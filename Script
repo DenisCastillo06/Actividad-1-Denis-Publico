@@ -1,0 +1,38 @@
+CREATE DATABASE TechSolutions1B;
+USE TechSolutions1B;
+
+CREATE TABLE cargo(
+id_cargo INT PRIMARY KEY,
+nombre_cargo VARCHAR(50)
+);
+
+CREATE TABLE departamento(
+id_departamento INT PRIMARY KEY,
+nombre_departamento VARCHAR(100) 
+);
+
+CREATE TABLE empleado(
+id_empleado INT PRIMARY KEY,
+nombre_empleado VARCHAR(30),
+apellido_empleado VARCHAR(30),
+id_departamento INT,
+id_cargo INT,
+salario_empleado DECIMAL(10,2),
+fecha_inicio_empleado DATE,
+CONSTRAINT fk_departamento_empleado FOREIGN KEY (id_departamento) REFERENCES departamento(id_departamento),
+CONSTRAINT fk_cargo_empleado FOREIGN KEY (id_cargo)REFERENCES cargo(id_cargo)
+);
+
+CREATE TABLE proyecto(
+id_proyecto INT PRIMARY KEY,
+nombre_proyecto VARCHAR(100)
+);
+
+CREATE TABLE asignacion(
+id_asignacioon INT PRIMARY KEY,
+id_empleado INT,
+id_proyecto INT,
+fecha_asignacion DATE,
+CONSTRAINT fk_empleado_asignacion FOREIGN KEY (id_empleado) REFERENCES empleado(id_empleado),
+CONSTRAINT fk_proyecto_asignacion FOREIGN KEY (id_proyecto) REFERENCES proyecto(id_proyecto)
+);
